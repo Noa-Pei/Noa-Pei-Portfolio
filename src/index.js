@@ -1,13 +1,65 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+import {App} from './App';
 import reportWebVitals from './reportWebVitals';
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+import {Home} from './HomePage/Home';
+import {PostsPage} from './PostsPage/components/Posts';
+import {Post} from './SinglePostPage/SinglePost';
+import {NewPostForm} from './Admin/Admin';
+import {ContactPage} from './Contact/Contact';
+import {BlogProvider} from "./Providers/Blog-Provider";
+import {AuthenticProvider} from "./Providers/Authentic-Provider";
+import './portfolio.css';
+
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/posts",
+        element: <PostsPage />,
+      },
+      {
+        path: "/posts/:id",
+        element: <Post />,
+      },
+      {
+        path: '/contact',
+        element: <ContactPage />,
+      },
+      {
+        path: '/admin',
+        element: <NewPostForm />
+      },
+      {
+        path: "/admin/:id",
+        element: <NewPostForm />,
+      }
+    ],
+  },
+]);
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <AuthenticProvider>
+        <BlogProvider>
+           <RouterProvider router={router} />
+        </BlogProvider>
+    </AuthenticProvider>
   </React.StrictMode>
 );
 

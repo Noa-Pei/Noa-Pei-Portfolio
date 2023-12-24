@@ -1,0 +1,181 @@
+
+.navIMG {
+    max-width: 7%;
+    max-height: 7%;
+}
+
+.pageTitle {
+    width: Hug (1,480px);
+    height: Hug (566px);
+    top: 84px;
+    padding: 120px, 255px, 80px, 255px;
+    gap: 10px;
+    background: white;
+}
+
+h1 {
+    font-family: Graphik;
+    font-size: 70px;
+    font-weight: 700;
+    line-height: 91px;
+    letter-spacing: -0.03em;
+    text-align: center;
+    background-clip: text;
+    -webkit-background-clip: text;
+    background-image: radial-gradient(farthest-corner at 20px 20px,
+                red 0%,
+                yellow 100%,
+                orange); 
+    -webkit-text-fill-color:transparent;
+}
+
+.postList {
+    margin: 2.5% 10%;
+}
+
+.postFilter {
+    border-color: blueviolet;
+    border-radius: 15px;
+    box-shadow: blueviolet 0px 30px 60px -12px inset, yellow 0px 18px 50px -18px inset;
+}
+
+.postCard-design {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    background-color: rgba(240, 46, 170, 0.4);
+    border-radius: 5px;
+    box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, 
+    rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px;
+    margin: 5%;
+}
+
+.postCard-image {
+    width: 50%;
+    border-radius: 5px;
+}
+
+.card-head-2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: indigo;
+    font-size: larger;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.destroy {
+    font-size: 100%;
+    color: fuchsia;
+    /* transition: color 0.2s ease-out; */
+    background-color: rgba(240, 46, 176, 0);
+    border-radius: 20px;
+    border-color: fuchsia;
+    font-weight: bold;
+}
+
+.destroy:hover {
+    color: aquamarine;
+    border-color: aquamarine;
+}
+
+.destroy:after {
+    content: 'X';
+    padding: 1px;
+}
+
+.postCard-description {
+    font-weight: bolder;
+    box-shadow: chartreuse 0px 30px 60px -12px inset, yellow 0px 18px 50px -18px inset;
+}
+
+.postCard-direction-col {
+    flex-direction: column;
+    width: 100%;
+}
+
+.postCard-buttons {
+    display: inline-block;
+}
+
+.single-post-body {
+    font-size: 175%;
+    word-wrap: wrap;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.adminForm {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 5% 20%;
+}
+
+.adminBtns {
+    margin-top: 5%;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-direction: column;
+}
+
+.subForm {
+    padding: 5%;
+}
+
+.image-gallery {
+    overflow-x: auto;
+    white-space: nowrap;
+    margin: 2% 0;
+}
+
+.image-gallery::-webkit-scrollbar {
+    width: thin;
+    border-radius: 100%;
+}
+
+.image-gallery::-webkit-scrollbar-track {
+    background: rgb(45, 7, 99); 
+  }
+  
+.image-gallery::-webkit-scrollbar-thumb {
+    background: orange;  
+}
+
+.image-gallery::-webkit-scrollbar-thumb:hover {
+    background: aquamarine;  
+}
+  
+.gallery {
+    display: inline-flex;  
+}
+
+.gallery img {
+    width: 50%;
+    object-fit: cover;
+    margin-right: 5px;
+}
+
+.gallery img:hover {
+    width: 60%;
+}
+
+.textDesign {
+    color: beige;
+    font-family:'Courier New', Courier, monospace;
+    font-weight: bold;
+}
+
+
