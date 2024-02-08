@@ -1,5 +1,5 @@
 import {useParams, Link} from "react-router-dom";
-import {useContext} from "react";
+import {useContext, useEffect, useState} from "react";
 import {BlogContext} from "../Providers/Blog-Provider";
 import {AuthentiContext} from "../Providers/Authentic-Provider";
 import beachIMG from '../bat-galim.jpg';
@@ -10,14 +10,29 @@ import nightIMG from "../nightdue.jpg"
 import morningIMG from "../morningDue.jpg"
 import parkIMG from "../dog-park.jpg"
 
+
+
 export function Post(){
   const {id} = useParams();
-  const {posts, removePost} = useContext(BlogContext);
+  const [post, setPost] = useState();
   const {user} = useContext(AuthentiContext);
-  const post = posts.find(element => element.id === id);
+  const {removePost, editPost} = useContext(BlogContext);
+  // const post = posts.find(element => element.id === id);
   const imgGallery = [parisIMG, eightiesIMG, beachIMG, boatIMG, nightIMG, morningIMG, parkIMG];
   const randomImage = imgGallery[Math.floor(Math.random() * imgGallery.length)];
 
+  
+  useEffect(() => {
+    fetch(`/posts/${id}`)
+        .then(response => response.json())
+        .then(json => setPost(json))
+  }, []);
+
+  const editPostHandler = () => {
+    editPost(post);
+  }
+
+  const body = post?.body?.split("\n") || [];
 
   return (
       <div className='py-5 text-center container'>
@@ -30,7 +45,7 @@ export function Post(){
             {user && (
             <button className="btn btn-outline-danger" onClick={() => removePost(post.id)}>Delete</button>)}
             {user && (
-            <Link to={ `/admin/${post.id}` }
+            <Link to={ `/admin` } onClick={editPostHandler}
                   className='btn btn-outline-warning postCard-buttons'>
               Edit
             </Link>)}
@@ -39,11 +54,12 @@ export function Post(){
             <h3 className="textDesign">{post.description}</h3>
             <p className="textDesign">{post.createdAt}</p>
             <img className="postCard-image" src={randomImage} alt="random" />
-            <p className="textDesign single-post-body">{post.body}</p>
+            {/* <p className="textDesign single-post-body">{post.body}</p> */}
+            {body.map((paragraph, i) => (<p className="textDesign single-post-body post" key={i}>{paragraph}</p>))}
           </div>
         ) : (
           <div className="spinner-border"
-                style={{width: '3rem', height: '3rem',}}
+                style={{width: '7rem', height: '7rem', color: 'yellow'}}
                 role="status">
             <span className="visually-hidden">Loading...</span>
           </div>

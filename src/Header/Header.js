@@ -1,6 +1,7 @@
 import {Link} from "react-router-dom";
 import {useContext} from "react";
 import {AuthentiContext} from "../Providers/Authentic-Provider";
+import googleButton from "../google_btn/web_dark_rd_SI@1x.png"
 import twinkleIMG from "../twinkle-lights.jpg"
 
 export function Header(){
@@ -20,6 +21,11 @@ export function Header(){
           <a className="navbar-brand textDesign" href="#">{
             user ? `Hello: ${user.userName}` : <button className="btn btn-outline-warning" onClick={signIn}>Sign-In</button>
           }</a>
+          {/* <a className="navbar-brand textDesign" href="#">{
+            user ? `Hello: ${user.userName}` : <button className="btn btn-outline-warning" onClick={signIn}>
+              <img src={googleButton} alt="Google sign-in" />
+            </button>
+          }</a> */}
           <ul className='nav nav-underline'>
             <li className='nav-item'>
               <Link to="/" className='nav-link'>Home</Link>

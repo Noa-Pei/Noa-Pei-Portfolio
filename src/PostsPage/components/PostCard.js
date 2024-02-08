@@ -5,8 +5,13 @@ import {AuthentiContext} from "../../Providers/Authentic-Provider";
 
 
 export function PostCard({singlePost}){
-  const {removePost} = useContext(BlogContext);
+  const {removePost, editPost} = useContext(BlogContext);
   const {user} = useContext(AuthentiContext);
+
+  const editPostHandler = () => {
+    editPost(singlePost);
+}
+
 
     return (
         <div className='card mb-4 postCard-design'>
@@ -31,7 +36,7 @@ export function PostCard({singlePost}){
         {/* in this case user === admin, only admin can manage the posts (add, remove or edit). */}
         {/* the edit button sends the post with all the information back to the admin page for edit. */}
         {user && (
-        <Link to={ `/admin/${singlePost.id}` }
+        <Link to={ `/admin` } onClick={editPostHandler}
               className='btn btn-outline-warning postCard-buttons'>
           Edit
         </Link>

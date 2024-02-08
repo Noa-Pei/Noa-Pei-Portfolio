@@ -4,26 +4,32 @@ import {useContext} from "react";
 import {BlogContext} from "../../Providers/Blog-Provider";
 
 export function PostsPage(){
-    const {posts} = useContext(BlogContext);
-    const [query, setQuery] = useState('');
+    const {posts, setQuery, setToPost, toPost, setFromPost, fromPost} = useContext(BlogContext);
     const [feed, setFeed] = useState([]);
 
-    // updating the query state in order to trigger the useEffect that filters the posts.
-    // matching the user's search input with the filtering effect, enabling the user to filter the posts,
-    // by calling postFilter to filter the posts based on the new query (user's input),
-    // without it, the useEffect would only run on initial render and the feed would never update according to the user's input.
-    const handleUserInput = (evt) => {
+
+    const handleUserFilterInput = (evt) => {
+        setToPost(3);
         setQuery(evt.target.value);
     };
 
-    const postFilter= () => {
-        const lowerQuery = query.toLowerCase();
-        return posts.filter(post => post.title.toLowerCase().includes(lowerQuery) || post.description.toLowerCase().includes(lowerQuery));
-    };
 
-    useEffect(() => {
-        setFeed(postFilter())
-    }, [query]);
+    // const handleUserFromInput = (evt) => {
+    //     setToPost(3);
+    //     setFromPost(evt.target.value);
+    // };
+
+    // const handleUserToInput = (evt) => {
+    //     setToPost(evt.target.value);
+    // };
+
+    const handleLoadMore = () => {
+        if (toPost > posts.length) {
+            alert("No more posts to display"); 
+        }
+        setToPost(toPost + 3);
+    }
+
 
     // setting feed state to current posts, when posts update, or when user deletes their filter input.
     useEffect(() => {
@@ -38,9 +44,11 @@ export function PostsPage(){
                 <h2 className="textDesign">My awesome posts, Enjoy!</h2>
             </div>
             <p className="textDesign">Posts: {posts.length}</p>
-            <input className="postFilter" onInput={handleUserInput}/>
+            <input className="postFilter" onInput={handleUserFilterInput} placeholder="🔍"/>
+            {/* <input className="postFilter" type="number" onInput={handleUserFromInput}/> */}
+            {/* <input className="postFilter" type="number" onInput={handleUserToInput}/> */}
             <PostList feed={feed}/>
-            <button className="btn btn-info my-2">Load More</button>
+            <button className="btn btn-info my-2" onClick={handleLoadMore}>Load More</button>
         </div>
     );
 };

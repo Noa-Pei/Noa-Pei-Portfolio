@@ -12,7 +12,7 @@ export function App() {
     backgroundRepeat:"no-repeat",
     height: "100vh",
     width: "100%",
-    position: "fixed",
+    // position: "fixed",
     overflow: "scroll"
   }
 
