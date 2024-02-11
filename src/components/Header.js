@@ -1,40 +1,47 @@
 import {Link} from "react-router-dom";
 import {useContext} from "react";
 import {AuthentiContext} from "../Providers/Authentic-Provider";
-import googleButton from "../google_btn/web_dark_rd_SI@1x.png"
-import twinkleIMG from "../twinkle-lights.jpg"
+import {useNavigate} from "react-router-dom";
+import googleButton from "../google_btn/web_dark_rd_ctn@1x.png"
+import twinkleIMG from "../images/twinkle-lights.jpg"
 
 export function Header(){
-  const {user, signIn, signOut} = useContext(AuthentiContext);
+  const {user, signIn, signInGoogle, signOut} = useContext(AuthentiContext);
   const backgroundImage = {
     backgroundImage: `url(${twinkleIMG})`, 
     backgroundSize:"cover", 
     backgroundRepeat:"no-repeat",
   };
 
+  const navigate = useNavigate();
+
+  const signUp = () => {
+    navigate('/signUp')
+  }
+
     return (
         <>
         <nav className="navbar navbar-expand-lg bg-body-tertiary" style={backgroundImage}>
         <div className="container">
           <img src={twinkleIMG} alt="Twinkle-Lights" className="navIMG"/>
-          <a className="navbar-brand textDesign" href="#">Noa Pei ~ Portfolio</a>
+          <p className="navbar-brand textDesign">Noa Pei ~ Portfolio</p>
+          <p className="navbar-brand textDesign">{
+            user ? `Hello: ${user.first_name}` : <button className="btn btn-outline-warning" onClick={signIn}>Sign-In</button>
+          }</p>
+          <p className="navbar-brand textDesign">{
+            user ? null: <button className="btn btn-outline-warning" onClick={signUp}>Sign-Up</button>
+          }</p>
           <a className="navbar-brand textDesign" href="#">{
-            user ? `Hello: ${user.userName}` : <button className="btn btn-outline-warning" onClick={signIn}>Sign-In</button>
-          }</a>
-          {/* <a className="navbar-brand textDesign" href="#">{
-            user ? `Hello: ${user.userName}` : <button className="btn btn-outline-warning" onClick={signIn}>
+            user ? null : <button className="btn btn-outline-warning" onClick={signInGoogle}>
               <img src={googleButton} alt="Google sign-in" />
             </button>
-          }</a> */}
+          }</a>
           <ul className='nav nav-underline'>
             <li className='nav-item'>
               <Link to="/" className='nav-link'>Home</Link>
             </li>
             <li className='nav-item'>
               <Link to="/posts" className='nav-link'>Posts</Link>
-            </li>
-            <li className='nav-item'>
-              <Link to="/contact" className='nav-link'>Contact</Link>
             </li>
             <li className='nav-item'>
               <a href="#footer" className='nav-link'>Subscribe</a>

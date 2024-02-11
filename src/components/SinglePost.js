@@ -2,22 +2,19 @@ import {useParams, Link} from "react-router-dom";
 import {useContext, useEffect, useState} from "react";
 import {BlogContext} from "../Providers/Blog-Provider";
 import {AuthentiContext} from "../Providers/Authentic-Provider";
-import beachIMG from '../bat-galim.jpg';
-import boatIMG from '../old-boat.jpeg';
-import parisIMG from "../paris-love.jpg";
-import eightiesIMG from "../eighties.jpg";
-import nightIMG from "../nightdue.jpg"
-import morningIMG from "../morningDue.jpg"
-import parkIMG from "../dog-park.jpg"
-
-
+import beachIMG from '../images/bat-galim.jpg';
+import boatIMG from '../images/old-boat.jpeg';
+import parisIMG from "../images/paris-love.jpg";
+import eightiesIMG from "../images/eighties.jpg";
+import nightIMG from "../images/nightdue.jpg"
+import morningIMG from "../images/morningDue.jpg"
+import parkIMG from "../images/dog-park.jpg"
 
 export function Post(){
   const {id} = useParams();
   const [post, setPost] = useState();
   const {user} = useContext(AuthentiContext);
   const {removePost, editPost} = useContext(BlogContext);
-  // const post = posts.find(element => element.id === id);
   const imgGallery = [parisIMG, eightiesIMG, beachIMG, boatIMG, nightIMG, morningIMG, parkIMG];
   const randomImage = imgGallery[Math.floor(Math.random() * imgGallery.length)];
 

@@ -1,21 +1,21 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import '../src/styles/index.css';
 import {App} from './App';
 import reportWebVitals from './reportWebVitals';
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import {Home} from './HomePage/Home';
-import {PostsPage} from './PostsPage/components/Posts';
-import {Post} from './SinglePostPage/SinglePost';
-import {NewPostForm} from './Admin/Admin';
-import {ContactPage} from './Contact/Contact';
+import {Home} from './components/Home';
+import {PostsPage} from './components/PostsPage/Posts';
+import {Post} from './components/SinglePost';
+import {NewPostForm} from './components/Admin';
+import {SignUpPage} from './components/signup';
 import {BlogProvider} from "./Providers/Blog-Provider";
 import {AuthenticProvider} from "./Providers/Authentic-Provider";
-import './portfolio.css';
+import '../src/styles/portfolio.css';
 
 
 const router = createBrowserRouter([
@@ -36,16 +36,16 @@ const router = createBrowserRouter([
         element: <Post />,
       },
       {
-        path: '/contact',
-        element: <ContactPage />,
-      },
-      {
         path: '/admin',
         element: <NewPostForm />
       },
       {
         path: "/admin/:id",
         element: <NewPostForm />,
+      },
+      {
+        path: "/signup",
+        element: <SignUpPage />
       }
     ],
   },

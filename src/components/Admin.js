@@ -4,24 +4,19 @@ import {BlogContext} from "../Providers/Blog-Provider";
 import {AuthentiContext} from "../Providers/Authentic-Provider";
 import {useNavigate} from "react-router-dom";
 
-
 export function NewPostForm({onPostSubmit}){
     const {addPost, updatePost, selectedPost, setSelectedPost} = useContext(BlogContext);
     const {user} = useContext(AuthentiContext);
     const { register, handleSubmit, formState, reset } = useForm();
     const navigate = useNavigate();
 
- 
     // in this case user === admin, only admin can manage the posts (add, remove or edit).
     if(!user) {
         return <p className="textDesign">You must sign in first!</p>
     };
     
-
-    const handleNewSubmission = (data) => {
-
+    const handleNewSubmission = (data, user) => {
         if (selectedPost) {
-            // console.log(selectedPost)
             updatePost(selectedPost, data);
             setSelectedPost(null);
             // navigating back to the posts page following the post update allow the admin to check 
@@ -32,6 +27,7 @@ export function NewPostForm({onPostSubmit}){
                 title: data.title,
                 description: data.description,
                 body: data.body,
+                posted_by: user.u_id
             })
             reset();
         }
@@ -65,27 +61,15 @@ export function NewPostForm({onPostSubmit}){
             
             <label htmlFor="body" className="textDesign">Body</label>
             <textarea className="text-area" defaultValue={selectedPost ? selectedPost.body : null} {...register('body')} wrap="soft" readOnly={false} />
-            
-            {/* <label className="textDesign">Post Date</label>
-            <input type="date" {...register('createdAt')} /> */}
  
             <div className="adminBtns">
             {selectedPost ? <button className='btn btn-warning' type="submit">Update Post</button> : <button className='btn btn-info' type="submit">Create Post</button>}
-                {/* <button className='btn btn-info' type="submit">Create Post</button>
-                <button className='btn btn-warning' onClick={handleSubmit(handleEditPost)}>Update Post</button> */}
+
             </div>
         </form>
         </div>
     )
 };
-
-
-
-        // const today = new Date().toISOString().slice(0,10);
-        // if(data.createdAt !== today) {
-        //     alert("Please enter today's date");
-        //     return;
-        //   }
 
         // // since the post id is manually iputed, it is important to verify if a post carrying the new input id already exists.
         // // since many functions, such as "remove" or "update" post rely on the specific post's id.
@@ -94,32 +78,6 @@ export function NewPostForm({onPostSubmit}){
         //     alert('ID already exists, enter new ID.')
         // };
 
-        // if(!selectedPost){
-        //     addPost({
-        //         id: data.id,
-        //         title: data.title,
-        //         description: data.description,
-        //         body: data.body,
-        //         createdAt: data.createdAt
-        //     });
-        //     reset();
-        // };
-    // };
 
-
-    // const handleEditPost = (data) => {
-    //     if(selectedPost){
-    //     const updated = {
-    //         title: data.title,
-    //         description: data.description,
-    //         body: data.body,
-    //         // createdAt: data.createdAt
-    //     };
-    //     updatePost(updated, id);
-    //     // navigating back to the posts page following the post update allow the admin to check 
-    //     // if the edited post is to s/he's satisfaction, and continue editing other posts.
-    //     navigate('/posts');
-    //     }
-    // };
 
 

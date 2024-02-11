@@ -1,8 +1,7 @@
-
-import {Header} from './Header/Header';
-import {Footer} from './Footer/Footer';
+import {Header} from './components/Header';
+import {Footer} from './components/Footer/Footer';
 import {Outlet} from "react-router-dom";
-import prideIMG from "./pride-lights.jpg"
+import prideIMG from "../src/images/pride-lights.jpg"
 
 
 export function App() {

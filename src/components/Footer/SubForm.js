@@ -1,8 +1,8 @@
 import {useForm} from "react-hook-form";
-import horseImg from "../Ireland-horsw.jpeg"
+import horseImg from "../../images/Ireland-horsw.jpeg"
 
 export function SubscriptionForm() {
-    const { register, handleSubmit, formState, watch } = useForm();
+    const { register } = useForm();
     const backgroundImage = {backgroundImage: `url(${horseImg})`, backgroundSize:"cover", backgroundRepeat:"no-repeat"}
 
     return (

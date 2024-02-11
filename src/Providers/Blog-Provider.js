@@ -1,5 +1,5 @@
-import {createContext, useState, useEffect} from "react";
-
+import {createContext, useState, useEffect, useContext} from "react";
+import {AuthentiContext} from "../Providers/Authentic-Provider";
 
 export const BlogContext = createContext(null);
 
@@ -9,6 +9,7 @@ export function BlogProvider({children}) {
   const [fromPost, setFromPost] = useState(0);
   const [query, setQuery] = useState("");
   const [selectedPost, setSelectedPost] = useState(null)
+  const {user} = useContext(AuthentiContext);
 
   const fetchPosts = async () => {
     try {
@@ -24,11 +25,7 @@ export function BlogProvider({children}) {
   }, [fromPost, toPost, query]); 
 
   const addPost = (post) => {
-    const newPost = {
-      "title" : post.title,
-      "description": post.description,
-      "body": post.body
-    };
+    const newPost = post
 
     fetch('/posts', {
       method: "POST",
@@ -41,9 +38,6 @@ export function BlogProvider({children}) {
       fetchPosts();
     })
   }
-  // const addPost = (post) => {
-  //     setPosts([...posts, post]);
-  // };
 
   const removePost = (id) => {
     fetch(`/posts/${id}`, {
@@ -53,17 +47,12 @@ export function BlogProvider({children}) {
       fetchPosts();
     })
   }
-  // const removePost = (postId) => {
-  //   setPosts(posts.filter(post => post.id !== postId));
-  // };
 
   const editPost = (post) => {
     setSelectedPost(post)
   }
 
   const updatePost = (editingPost, data) => {
-    // console.log(updatedPost);
-    // console.log(id);
     const updatedPost = {
       "title" : data.title,
       "description" : data.description,
@@ -79,15 +68,6 @@ export function BlogProvider({children}) {
         fetchPosts();
     })
   }
-
-  // const updatePost = (updatedPost) => {
-  //   setPosts(posts.map(post => 
-  //       post.id === updatedPost.id ? updatedPost : post  
-  //     )
-  //   );
-  // };
-
-
 
   const value = { posts, addPost, removePost, updatePost, toPost, setToPost, fromPost, setFromPost,
     setQuery, editPost, selectedPost, setSelectedPost };

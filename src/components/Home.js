@@ -1,13 +1,13 @@
 import {Link} from "react-router-dom";
-import beachIMG from '../bat-galim.jpg';
-import boatIMG from '../old-boat.jpeg';
-import hookerIMG from '../happy-hooker.jpeg';
-import parisIMG from "../paris-love.jpg";
-import eightiesIMG from "../eighties.jpg";
-import nightIMG from "../nightdue.jpg"
-import morningIMG from "../morningDue.jpg"
-import parkIMG from "../dog-park.jpg"
-import twinkleIMG from "../twinkle-lights.jpg"
+import beachIMG from '../images/bat-galim.jpg';
+import boatIMG from '../images/old-boat.jpeg';
+import hookerIMG from '../images/happy-hooker.jpeg';
+import parisIMG from "../images/paris-love.jpg";
+import eightiesIMG from "../images/eighties.jpg";
+import nightIMG from "../images/nightdue.jpg"
+import morningIMG from "../images/morningDue.jpg"
+import parkIMG from "../images/dog-park.jpg"
+import twinkleIMG from "../images/twinkle-lights.jpg"
 
 export function Home() {
   const imgGallery = [parisIMG, eightiesIMG, beachIMG, boatIMG, hookerIMG, nightIMG, morningIMG, parkIMG, twinkleIMG];

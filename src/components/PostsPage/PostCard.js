@@ -12,7 +12,6 @@ export function PostCard({singlePost}){
     editPost(singlePost);
 }
 
-
     return (
         <div className='card mb-4 postCard-design'>
         <div className='card-header card-head-2'>
