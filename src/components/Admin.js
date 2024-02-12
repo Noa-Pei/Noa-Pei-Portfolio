@@ -15,7 +15,7 @@ export function NewPostForm({onPostSubmit}){
         return <p className="textDesign">You must sign in first!</p>
     };
     
-    const handleNewSubmission = (data, user) => {
+    const handleNewSubmission = (data) => {
         if (selectedPost) {
             updatePost(selectedPost, data);
             setSelectedPost(null);
@@ -71,12 +71,6 @@ export function NewPostForm({onPostSubmit}){
     )
 };
 
-        // // since the post id is manually iputed, it is important to verify if a post carrying the new input id already exists.
-        // // since many functions, such as "remove" or "update" post rely on the specific post's id.
-        // const idExists = posts.some(post => post.id === data.id);
-        // if (idExists) {
-        //     alert('ID already exists, enter new ID.')
-        // };
 
 
 

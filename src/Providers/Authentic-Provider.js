@@ -5,6 +5,7 @@ export const AuthentiContext = createContext(null);
 export function AuthenticProvider({ children }) {
   const [user, setUser] = useState(null);
   const [users, setUsers] = useState([]);
+  const [email, setEmail] = useState(null);
 
   const addUser = (user) => {
     const newUser = {
@@ -30,40 +31,51 @@ export function AuthenticProvider({ children }) {
       const response = await fetch('/users');
       setUsers(await response.json());
     } catch {
-      alert("there was an error while fetching posts from the server");
+      alert("There was an error while fetching users from the server");
     }
   }
 
-  useEffect(() => {
-    fetchUsers();
-  }, []); 
+  // useEffect(() => {
+  //   fetchUsers();
+  // }, []); 
 
-  const signIn = ({ userName, password }) => {
-    setUser({ userName: 'Noa Pei' })
-  };  
-
-  // sign in with google
-  const navigate = (nav) => {
-    console.log(nav)
-    window.location.href = nav;
-    console.log(window.json);
-  }
-
-  const signInGoogle = async ()=> {
-    const response = await fetch('http://127.0.0.1:3005/request', {method: 'post'});
-
-    const data = await response.json();
-    console.log(data)
-    navigate(data.url)
-  }
-
-
+  const signIn = async ({email}) => {
+    try {
+      const response = await fetch(`/users/${email}`);
+      setUser(await response.json());
+    } catch {
+      alert("No user with a matching email found");
+    }
+  }; 
+  
   const signOut = () => {
     setUser(null);
   };
 
+
+  // sign in with google
+  const navigate = (nav) => {
+    window.location.href = nav;
+  }
+
+  const signInGoogle = async ()=> {
+    const response = await fetch('http://127.0.0.1:3005/request', {method: 'post'});
+    const data = await response.json();
+    navigate(data.url)
+  }
+
+
+  const removeUser = (id) => {
+    fetch(`/users/${id}`, {
+      method: "DELETE",
+    }).then(() => {
+      alert("User account deleted successfully");
+      setUser(null);
+    })
+  }
+
   const value = {
-    user, users, signIn, signInGoogle, signOut, addUser, fetchUsers
+    user, users, email, setEmail, signIn, signInGoogle, signOut, addUser, fetchUsers, removeUser
   };
 
   return (

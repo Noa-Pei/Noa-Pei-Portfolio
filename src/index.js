@@ -12,11 +12,11 @@ import {Home} from './components/Home';
 import {PostsPage} from './components/PostsPage/Posts';
 import {Post} from './components/SinglePost';
 import {NewPostForm} from './components/Admin';
+import {PersonalAccountPage} from './components/Account'
 import {SignUpPage} from './components/signup';
 import {BlogProvider} from "./Providers/Blog-Provider";
 import {AuthenticProvider} from "./Providers/Authentic-Provider";
 import '../src/styles/portfolio.css';
-
 
 const router = createBrowserRouter([
   {
@@ -42,6 +42,10 @@ const router = createBrowserRouter([
       {
         path: "/admin/:id",
         element: <NewPostForm />,
+      },
+      {
+        path: '/account',
+        element: <PersonalAccountPage />
       },
       {
         path: "/signup",

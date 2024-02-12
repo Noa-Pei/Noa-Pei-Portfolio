@@ -4,6 +4,13 @@
     max-height: 7%;
 }
 
+.signInForm {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    margin: 5% 20%;
+}
+
 .pageTitle {
     width: Hug (1,480px);
     height: Hug (566px);

@@ -5,7 +5,7 @@ import {useNavigate} from "react-router-dom";
 
 export function SignUpPage() {
   const {addUser, users} = useContext(AuthentiContext);
-  const { register, handleSubmit, formState} = useForm();
+  const { register, handleSubmit} = useForm();
   const navigate = useNavigate();
 
   const handleNewUser = (data) => {

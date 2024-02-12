@@ -7,6 +7,10 @@ export function PostsPage(){
     const {posts, setQuery, setToPost, toPost} = useContext(BlogContext);
     const [feed, setFeed] = useState([]);
 
+    // reseting the desplayed posts to unfiltered when navigating back to page
+    useEffect(() => {
+        setQuery("");
+    }, []);
 
     const handleUserFilterInput = (evt) => {
         setToPost(3);

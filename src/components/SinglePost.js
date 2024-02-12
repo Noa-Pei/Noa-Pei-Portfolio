@@ -49,7 +49,6 @@ export function Post(){
 
             <h1>{post.title}</h1>
             <h3 className="textDesign">{post.description}</h3>
-            <p className="textDesign">{post.createdAt}</p>
             <img className="postCard-image" src={randomImage} alt="random" />
             {/* <p className="textDesign single-post-body">{post.body}</p> */}
             {body.map((paragraph, i) => (<p className="textDesign single-post-body post" key={i}>{paragraph}</p>))}
