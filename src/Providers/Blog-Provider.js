@@ -1,5 +1,4 @@
-import {createContext, useState, useEffect, useContext} from "react";
-import {AuthentiContext} from "../Providers/Authentic-Provider";
+import {createContext, useState, useEffect} from "react";
 
 export const BlogContext = createContext(null);
 
@@ -9,7 +8,6 @@ export function BlogProvider({children}) {
   const [fromPost, setFromPost] = useState(0);
   const [query, setQuery] = useState("");
   const [selectedPost, setSelectedPost] = useState(null)
-  const {user} = useContext(AuthentiContext);
 
   const fetchPosts = async () => {
     try {

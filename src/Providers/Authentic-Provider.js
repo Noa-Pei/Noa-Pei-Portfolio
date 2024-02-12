@@ -35,9 +35,9 @@ export function AuthenticProvider({ children }) {
     }
   }
 
-  // useEffect(() => {
-  //   fetchUsers();
-  // }, []); 
+  useEffect(() => {
+    fetchUsers();
+  }, []); 
 
   const signIn = async ({email}) => {
     try {

@@ -18,8 +18,8 @@ export function SignUpPage() {
         surname: data.surname,
         email: data.email,
       })
+      navigate('/');
     }
-    navigate('/');
   }
   
   return (
